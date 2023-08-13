@@ -1,7 +1,7 @@
 # A sample PySpark Application
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, lit, current_timestamp, current_date
+from pyspark.sql.functions import col, current_timestamp, current_date
 
 
 def main():
