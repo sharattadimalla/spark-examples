@@ -17,9 +17,23 @@ def main(spark_session):
     df = spark.createDataFrame(data)
 
     # register dataframe as a SQL Temporary view
-    df.createOrReplaceTempView("superhero")
+    df.createOrReplaceTempView("tbl_superhero")
 
-    spark.sql("select * from superhero").show()
+    # Example 1 - simple spark sql on Temp View
+    spark.sql("select * from tbl_superhero").show()
+
+    # Example 2 - spark sql on Global View
+    df.createGlobalTempView("tbl_global_superhero")
+
+    spark.sql("select * from global_temp.tbl_global_superhero").show()
+    print(spark)
+
+    print("GlobalTempView persists across Spark Sessions within a Spark Job!")
+    print("GlobalTempView is tied to a system preserved database `global_temp`")
+    new_spark = spark.newSession()
+
+    print(new_spark)
+    new_spark.sql("select * from global_temp.tbl_global_superhero").show()
 
     return None
 
