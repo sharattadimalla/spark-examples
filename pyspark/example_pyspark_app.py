@@ -1,6 +1,6 @@
 # A sample PySpark Application
 
-from pyspark.sql import SparkSession
+from session.spark_session import get_session
 from pyspark.sql.functions import col, current_timestamp, current_date
 
 
@@ -9,9 +9,7 @@ def main():
     Main function
     """
     # create a spark session
-    spark = (
-        SparkSession.builder.appName("Sample PySpark").master("local[*]").getOrCreate()
-    )
+    spark = get_session()
 
     # spark version
     print(">>>> Spark Version: {}".format(spark.version))

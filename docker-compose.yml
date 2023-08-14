@@ -18,7 +18,7 @@ services:
     volumes:
       - ./pyspark/:/opt/pyspark_app/
       - ./resources/jars:/opt/pyspark_app/jars/
-    command: example_pyspark_write_file.py
+    command: "example_spark_sql.py"
     depends_on:
       - postgres_db
     ports:
