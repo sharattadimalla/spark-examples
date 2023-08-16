@@ -27,7 +27,6 @@ What is metastore architecture?
     of metadata. The metastore can be configured either as remote or embedded data store. In
     remote mode, metastore is a thrift service
 
-
 How does Apache Spark play a role with HiveTables?
     Apache Spark is a client that create HiveTables and query them. By using saveAsTable
     command the dataframe can be stored as a Hive Table. Spark will create a default local Hive
@@ -78,7 +77,7 @@ def main(spark_session):
     df = spark_session.createDataFrame(data)
 
     # create a Hive Table
-    df.write.saveAsTable("super_hero_tbl")
+    df.write.mode("overwrite").saveAsTable("super_hero_tbl")
 
     # querying a hive table
     spark_session.sql("select * from super_hero_tbl").show()
